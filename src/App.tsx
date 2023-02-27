@@ -15,6 +15,8 @@ import {
 
 import routerProvider from "@pankod/refine-react-router-v6";
 import dataProvider from "@pankod/refine-simple-rest";
+import { MuiInferencer } from "@pankod/refine-inferencer/mui";
+
 
 function App() {
   return (
@@ -29,6 +31,15 @@ function App() {
           catchAll={<ErrorComponent />}
           routerProvider={routerProvider}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          resources={[
+              {
+                  name: "products",
+                  list: MuiInferencer,
+                  show: MuiInferencer,
+                  create: MuiInferencer,
+                  edit: MuiInferencer,
+              },
+          ]}
         />
       </RefineSnackbarProvider>
     </ThemeProvider>
