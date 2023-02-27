@@ -14,9 +14,9 @@ import {
 } from "@pankod/refine-mui";
 
 import routerProvider from "@pankod/refine-react-router-v6";
-import dataProvider from "@pankod/refine-simple-rest";
+import { dataProvider } from "./rest-data-provider";
 import { MuiInferencer } from "@pankod/refine-inferencer/mui";
-
+import { MealList } from "./pages/MealList";
 
 function App() {
   return (
@@ -30,15 +30,17 @@ function App() {
           ReadyPage={ReadyPage}
           catchAll={<ErrorComponent />}
           routerProvider={routerProvider}
-          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          dataProvider={dataProvider(
+            "https://apis.career.otsimo.xyz/api/restaurant"
+          )}
           resources={[
-              {
-                  name: "products",
-                  list: MuiInferencer,
-                  show: MuiInferencer,
-                  create: MuiInferencer,
-                  edit: MuiInferencer,
-              },
+            {
+              name: "listMeals",
+              list: MealList,
+              show: MuiInferencer,
+              create: MuiInferencer,
+              edit: MuiInferencer,
+            },
           ]}
         />
       </RefineSnackbarProvider>
